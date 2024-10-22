@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: cards
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    show-sql: true
+  datasource:
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+  profiles:
+    active: ${SPRING_PROFILE_ACTIVE}
+  config:
+    import:
+      - 'application_qa.yml'
+      - 'application_prod.yml'
+
+server:
+  port: 8082
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
