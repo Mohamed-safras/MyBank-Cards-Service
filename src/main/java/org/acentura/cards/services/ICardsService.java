@@ -1,7 +1,6 @@
 package org.acentura.cards.services;
 
-import org.acentura.cards.dto.CardsDto;
-import org.springframework.stereotype.Service;
+import org.acentura.cards.response.CardsResponse;
 
 public interface ICardsService {
     /**
@@ -15,14 +14,14 @@ public interface ICardsService {
      * @param mobileNumber - Input mobile Number
      *  @return Card Details based on a given mobileNumber
      */
-    CardsDto fetchCard(String mobileNumber);
+    CardsResponse fetchCard(String mobileNumber);
 
     /**
      *
-     * @param cardsDto - CardsDto Object
+     * @param cardsResponse - CardsResponse Object
      * @return boolean indicating if the update of card details is successful or not
      */
-    boolean updateCard(CardsDto cardsDto);
+    boolean updateCard(CardsResponse cardsResponse);
 
     /**
      *

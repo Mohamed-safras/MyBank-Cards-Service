@@ -2,7 +2,7 @@ package org.acentura.cards.services.impl;
 
 import lombok.AllArgsConstructor;
 import org.acentura.cards.constants.CardsConstants;
-import org.acentura.cards.dto.CardsDto;
+import org.acentura.cards.response.CardsResponse;
 import org.acentura.cards.entity.Cards;
 import org.acentura.cards.exception.CardAlreadyExistsException;
 import org.acentura.cards.exception.ResourceNotFoundException;
@@ -54,23 +54,23 @@ public class CardsServiceImpl implements ICardsService {
      * @return Card Details based on a given mobileNumber
      */
     @Override
-    public CardsDto fetchCard(String mobileNumber) {
+    public CardsResponse fetchCard(String mobileNumber) {
         Cards cards = cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
         );
-        return CardsMapper.mapToCardsDto(cards, new CardsDto());
+        return CardsMapper.mapToCardsDto(cards, new CardsResponse());
     }
 
     /**
      *
-     * @param cardsDto - CardsDto Object
+     * @param cardsResponse - CardsResponse Object
      * @return boolean indicating if the update of card details is successful or not
      */
     @Override
-    public boolean updateCard(CardsDto cardsDto) {
-        Cards cards = cardsRepository.findByCardNumber(cardsDto.getCardNumber()).orElseThrow(
-                () -> new ResourceNotFoundException("Card", "CardNumber", cardsDto.getCardNumber()));
-        CardsMapper.mapToCards(cardsDto, cards);
+    public boolean updateCard(CardsResponse cardsResponse) {
+        Cards cards = cardsRepository.findByCardNumber(cardsResponse.getCardNumber()).orElseThrow(
+                () -> new ResourceNotFoundException("Card", "CardNumber", cardsResponse.getCardNumber()));
+        CardsMapper.mapToCards(cardsResponse, cards);
         cardsRepository.save(cards);
         return  true;
     }

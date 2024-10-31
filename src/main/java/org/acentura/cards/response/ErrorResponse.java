@@ -1,4 +1,4 @@
-package org.acentura.cards.dto;
+package org.acentura.cards.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
         name = "ErrorResponse",
         description = "Schema to hold error response information"
 )
-public class ErrorResponseDto {
+public class ErrorResponse {
 
     @Schema(
             description = "API path invoked by client"

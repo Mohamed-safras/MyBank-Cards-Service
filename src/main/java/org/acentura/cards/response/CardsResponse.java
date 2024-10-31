@@ -1,4 +1,4 @@
-package org.acentura.cards.dto;
+package org.acentura.cards.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
@@ -11,7 +11,7 @@ import lombok.Data;
         description = "Schema to hold Card information"
 )
 @Data
-public class CardsDto {
+public class CardsResponse {
 
     @NotEmpty(message = "Mobile Number can not be a null or empty")
     @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile Number must be 10 digits")
