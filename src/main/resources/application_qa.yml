@@ -1,5 +1,0 @@
-spring:
-  datasource:
-    username: ${SPRING_DATASOURCE_QA_USERNAME}
-    password: ${SPRING_DATASOURCE_QA_PASSWORD}
-    url: ${SPRING_DATASOURCE_QA_URL}
