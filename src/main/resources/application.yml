@@ -1,26 +1,46 @@
 spring:
   application:
     name: cards
+  config:
+    import: "optional:configserver:http://localhost:8071"
+  cloud:
+    bus:
+      id: ${spring.application.name}:${spring.profiles.active}:${random.uuid}
+      refresh:
+        enabled: true
+      enabled: true
+      env:
+        enabled: true
+    config:
+      uri: ${config.uri:http://localhost:8071}
+      name: ${spring.application.name}
+  profiles:
+    active: ${SPRING_PROFILE_ACTIVE}
   jpa:
     generate-ddl: true
     hibernate:
       ddl-auto: update
     database: mysql
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
   datasource:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     url: ${SPRING_DATASOURCE_URL}
-  profiles:
-    active: ${SPRING_PROFILE_ACTIVE}
-  config:
-    import:
-      - 'application_qa.yml'
-      - 'application_prod.yml'
-
+  kafka:
+    bootstrap-servers: localhost:9092
 server:
   port: 8082
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
